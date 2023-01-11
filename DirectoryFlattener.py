@@ -11,7 +11,10 @@ def print_directory_structure(path, level=0, file=None, excluded_folders=[]):
             else:
                 print('    ' * level + '|--' + child)
             print_directory_structure(child_path, level + 1, file, excluded_folders)
-        elif os.path.isfile(child_path):
+            
+    for child in sorted(os.listdir(path)):
+        child_path = os.path.join(path, child)
+        if os.path.isfile(child_path):
             if child_path == file_name:
                 continue
             if file:
@@ -29,7 +32,9 @@ def print_directory_contents(path, level=0, file=None, current_path="", excluded
             current_path = os.path.join(current_path, child)
             print_directory_contents(child_path, level + 1, file, current_path, excluded_folders)
             current_path = os.path.dirname(current_path)
-        elif os.path.isfile(child_path):
+    for child in sorted(os.listdir(path)):
+        child_path = os.path.join(path, child)
+        if os.path.isfile(child_path):
             parent_folder = os.path.basename(os.path.dirname(child_path))
             if child_path == file_name:
                 continue
