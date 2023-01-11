@@ -1,7 +1,7 @@
 import os
 
 def print_directory_structure(path, level=0, file=None, excluded_folders=[]):
-    for child in os.listdir(path):
+    for child in sorted(os.listdir(path)):
         child_path = os.path.join(path, child)
         if os.path.isdir(child_path):
             if child in excluded_folders:
@@ -20,10 +20,8 @@ def print_directory_structure(path, level=0, file=None, excluded_folders=[]):
                 print('    ' * level + '|--' + child)
 
 
-
-
 def print_directory_contents(path, level=0, file=None, current_path="", excluded_folders=[]):
-    for child in os.listdir(path):
+    for child in sorted(os.listdir(path)):
         child_path = os.path.join(path, child)
         if os.path.isdir(child_path):
             if child in excluded_folders:
@@ -49,6 +47,7 @@ def print_directory_contents(path, level=0, file=None, current_path="", excluded
                     content = content.decode("utf-8", errors='replace')
                     print(f"###FILESEPERATION### {current_path}/{child} \n")
                     file.write(content+'\n\n\n\n\n')
+
 
 
 
